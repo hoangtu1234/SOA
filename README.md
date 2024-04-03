@@ -1,50 +1,57 @@
 ## 1. Phân tích nghiệp vụ
-### 1. Phân rã quá trình nghiệp vụ
-Các bước thực hiện:
-- Nhận mã đơn hàng.
-- Khởi tạo quá trình.
-- Kiểm tra mã đơn hàng tồn tại hay không.
-- Nếu không tồn tại, từ chối truy xuất mã đơn hàng.
-- Xác thực quyền vận đơn bằng token.
-- Nếu xác thực thất bại, từ chối truy xuất mã đơn hàng.
-- Thông báo có vấn đề khi vận đơn.
-- Lấy thông tin khách hàng dựa vào token.
-- Lấy thông tin đơn hàng.
-- Lấy thông tin các mặt hàng.
-- Lấy thông tin người giao hàng.
-- Lấy các trạng thái của đơn hàng.
-- Gửi trả tất cả dữ liệu và kết thúc quá trình.
-### 2. Loại bỏ những hành động không cần thiết
-- **Nhận mã đơn hàng.**
-- Khởi tạo quá trình.
-- Kiểm tra mã đơn hàng tồn tại hay không.
-- Nếu không tồn tại, từ chối truy xuất mã đơn hàng.
-- Xác thực quyền vận đơn bằng token.
-- Nếu xác thực thất bại, từ chối truy xuất mã đơn hàng.
-- Thông báo có vấn đề khi vận đơn.
-- Lấy thông tin khách hàng dựa vào token.
-- Lấy thông tin đơn hàng.
-- Lấy thông tin các mặt hàng.
-- Lấy thông tin người giao hàng.
-- Lấy các trạng thái của đơn hàng.
-- Gửi trả tất cả dữ liệu và kết thúc quá trình.
-### 3. Xác định ứng viên thực thể dịch vụ
+### 1. Phân rã quy trình nghiệp vụ
+Tên Use case : Theo dõi trạng thái đơn hàng đã đặt.
+Mô tả quy trình nghiệp vụ: Người dùng đã đặt hàng, yêu cầu theo dõi trạng thái của đơn hàng. Hệ thống nhận mã của đơn hàng, kiểm tra mã đơn hàng, nếu mã đơn hàng không tồn tại, từ chối các hành động liên quan đến truy xuất thông tin về mã đơn hàng này. Hệ thống kiểm tra, xác thực quyền truy xuất thông tin đơn hàng(kiểm tra xem thông tin về khách hàng có chính xác không), nếu không từ chối các hành động truy xuất thông tin về mã đơn hàng này, gửi thông báo có vấn đề xảy ra. Hệ thống truy xuất thông tin liên quan đến đơn hàng gồm: thông tin khách hàng, thông tin mặt hàng, thông tin shipper, từ các thông tin trên hệ thống truy xuất trạng thái của đơn hàng và gửi laị dữ liệu cho người dùng. 
+Phân ra quy trình nghiệp vụ thành các bước cụ thể:
+- Mã đơn hàng được gửi đến như 1 yêu câù kích hoạt.
+- Hệ thống nhận mã đơn hàng.
+- Hệ thống bắt đầu khởi tạo quy trình xử lý nhiệm vụ.
+- Kiểm tra xem có mã đơn hàng này hay không.
+- Nếu không tồn tại, từ chối truy xuất thông tin về mã đơn hàng.
+- Xác thực quyền truy xuất thông tin đơn hàng bằng token.
+- Nếu xác thực thất bại, từ chối truy xuất các thông tin về mã đơn hàng.
+- Thông báo có vấn đề.
+- Truy xuất thông tin khách hàng thông qua token
+- Truy xuất thông tin đơn hàng.
+- Truy xuất thông tin các mặt hàng.
+- Truy xuất thông tin shipper.
+- Truy xuất thông tin về các trạng thái của đơn hàng.
+- Gửi tất cả thông tin về đơn hàng.
+- Kết thúc quy trình.
+### 2. Loại bỏ những hành động không phù hợp để dịch vụ hóa.
+- **Mã đơn hàng được gửi đến như 1 yêu câù kích hoạt.**
+- **Hệ thống nhận mã đơn hàng.**
+- Hệ thống bắt đầu khởi tạo quy trình xử lý nhiệm vụ.
+- Kiểm tra xem có mã đơn hàng này hay không.
+- Nếu không tồn tại, từ chối truy xuất thông tin về mã đơn hàng.
+- Xác thực quyền truy xuất thông tin đơn hàng bằng token.
+- Nếu xác thực thất bại, từ chối truy xuất thông tin về mã đơn hàng.
+- Thông báo có vấn đề.
+- Truy xuất thông tin khách hàng thông qua token
+- Truy xuất thông tin đơn hàng.
+- Truy xuất thông tin các mặt hàng.
+- Truy xuất thông tin shipper.
+- Truy xuất thông tin về các trạng thái của đơn hàng.
+- Gửi tất cả thông tin về đơn hàng.
+- Kết thúc quy trình.
+### 3. Xác định các ứng viên Entity Service.
 
-Các bước không bất khả tri sẽ được in đậm:  
-- **Khởi tạo quá trình.**
-- **Kiểm tra mã đơn hàng tồn tại hay không.**
-- **Nếu không tồn tại, từ chối truy xuất mã đơn hàng.**
-- **Xác thực quyền vận đơn bằng token.**
-- **Nếu xác thực thất bại, từ chối truy xuất mã đơn hàng.**
-- **Thông báo có vấn đề khi vận đơn.**
-- Lấy thông tin khách hàng dựa vào token.
-- Lấy thông tin đơn hàng.
-- Lấy thông tin các mặt hàng.
-- Lấy thông tin người giao hàng.
-- Lấy các trạng thái của đơn hàng.
-- **Gửi trả tất cả dữ liệu và kết thúc quá trình.**
+Các bước chứa các thông tin logic đặc thù của quy trình nghiệp vụ có khả năng tái sử dụng thấp được in đậm:  
+- **Hệ thống bắt đầu khởi tạo quy trình xử lý nhiệm vụ.**
+- **Kiểm tra xem có mã đơn hàng này hay không.**
+- **Nếu không tồn tại, từ chối truy xuất thông tin về mã đơn hàng.**
+- **Xác thực quyền truy xuất thông tin đơn hàng bằng token.**
+- **Nếu xác thực thất bại, từ chối truy xuất thông tin về mã đơn hàng.**
+- **Thông báo có vấn đề .**
+- Truy xuất thông tin khách hàng thông qua token
+- Truy xuất thông tin đơn hàng.
+- Truy xuất thông tin các mặt hàng.
+- Truy xuất thông tin shipper.
+- Truy xuất thông tin về các trạng thái của đơn hàng.
+- **Gửi tất cả thông tin về đơn hàng.**
+- **kết thúc quá trình.**
 
-Từ đó ta sẽ có các ứng viên sau:  
+Các ứng viên Entity Service gồm:  
 
 ![image](https://user-images.githubusercontent.com/66776021/232264184-34121b7d-4f90-4123-8a96-ef8445a11ded.png)
 
@@ -56,16 +63,16 @@ Từ đó ta sẽ có các ứng viên sau:
 
 ![image](https://user-images.githubusercontent.com/66776021/232264223-f013611b-4577-40bb-83c6-8e590285de86.png) 
 
-### 4. Xác định logic quy trình cụ thể
+### 4. Xác định bước cụ thể đặc trưng cho logic nghiệp vụ:
 Các bước không bất khả tri:  
-- Khởi tạo quá trình.
-- Kiểm tra mã đơn hàng tồn tại hay không.
-- Nếu không tồn tại, từ chối truy xuất mã đơn hàng.
-- Xác thực quyền vận đơn bằng token.
-- Nếu xác thực thất bại, từ chối truy xuất mã đơn hàng.
-- Gửi trả tất cả dữ liệu và kết thúc quá trình.
-
-Ta chọn “Khởi tạo quá trình” là ứng viên năng lực dịch vụ cho ứng viên dịch vụ “TheoDoiTrangThaiDonHang”.
+- Hệ thống bắt đầu khởi tạo quy trình xử lý nhiệm vụ.
+- Kiểm tra xem có mã đơn hàng này hay không.
+- Nếu không tồn tại, từ chối truy xuất thông tin về mã đơn hàng.
+- Xác thực quyền truy xuất thông tin đơn hàng bằng token.
+- Nếu xác thực thất bại, từ chối truy xuất thông tin về mã đơn hàng.
+- Gửi tất cả thông tin về đơn hàng.
+- Kết thúc quy trình.
+Ta chọn “Khởi tạo quy trình xử lý nhiệm vụ” là ứng viên năng lực cho ứng viên dịch vụ Task “TheoDoiTrangThaiDonHang”.
 ![image](https://user-images.githubusercontent.com/66776021/232264174-bbc3298b-9039-47f3-81ea-94bd3ba70ff8.png)
 
 ### 5. Xác định các tài nguyên
